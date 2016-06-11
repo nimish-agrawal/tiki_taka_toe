@@ -1,31 +1,23 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
-<head>
-<title>Tic-Tac-Toe Online Game</title>
-<meta name="keywords" content="tic tac toe, online game">
-<meta name="description" content="">
-<link rel="stylesheet" href="/src/css.css" type="text/css">
+	<head>
+		<title>Tiki Taka Toe</title>
+	</head>
 
-
-</head>
-
-<body >
-
+<body>
 <div align="center">
 
 <table cellpadding="0" cellspacing="0" border="0" width="600">
 	<tr>
-		<td><div class="hdrL">
-<a href="http://www.calculatorcat.com"><img src="/images/logo.gif" width="220" height="37" border="0" alt="" /></a>
-</div></td>
+		<td><div class="hdrL"></div></td>
 	</tr>
 	<tr>
 		<td valign="top" align="center" class="tBorder" style="padding:30px;padding-top:20px">
 
-				<h1 class="hh1"><b>Tic-Tac-Toe</b></h1>
+				<h1 class="hh1"><b>Tiki-Taka-Toe</b></h1>
 		<br /><br />
-						<div align="left">Here is an interactive game of good old fashioned tic-tac-toe! The game includes automatic scoring and alternating "first moves". Enjoy!</div>
+						<div align="center">Here is an interactive game of good old fashioned tic-tac-toe! The game includes automatic scoring and alternating "first moves". Enjoy!</div>
 		<br /><br />
 		
 
@@ -36,13 +28,13 @@
 <!-- The JavaScript Source!! http://javascript.internet.com -->
 
 <!-- Begin
-var x = "images/tic_tac_toe/x.jpg";
+var x = "http://www.clker.com/cliparts/N/8/h/O/7/G/black-cross-th.png";
 // Location of where you uploaded your site's x.jpg image
 
-var o = "images/tic_tac_toe/o.jpg";
+var o = "http://www.samleisure.co.uk/wp-content/uploads/2011/10/6211.032-100x100.jpg";
 // Location of where you uploaded your site's o.jpg image
 
-var blank = "images/tic_tac_toe/blank.jpg";
+var blank = "http://www.fastdecals.com/images/Decals/Nondecal/RoyalBlue.jpg";
 // Location of where you uploaded your site's blank.jpg image
 
 var pause = 0;
@@ -67,7 +59,7 @@ var wn = 0;
 var ls = 0;
 var ts = 0;
 function help() {
-alert("Welcome to Tic-Tac-Toe!  You play as the X's and the computer is the O's.  Select the square you want to put your X into by clicking them.  You cannot occupy a square that is already occupied. The first player to get three squares in a row wins.  Good Luck!!")
+alert("Welcome to Tiki-Taka-Toe!  You play as the X's and the computer is the O's.  Select the square you want to put your X into by clicking them.  You cannot occupy a square that is already occupied. The first player to get three squares in a row wins.  Good Luck!!")
 }
 function logicOne() {
 if ((a==1)&&(b==1)&&(c==1)) all=1;
@@ -289,37 +281,39 @@ t--;
 </script>
 
 <center>
-<form name=game>
+
 <table border=0>
 <td>
-<table border=1>
+<table border=20>
 <tr>
-<td><a href="javascript:yourChoice('A')"><img src="images/tic_tac_toe/blank.jpg" border=0 height=100 width=100 name=A alt="Top-Left"></a></td>
-<td><a href="javascript:yourChoice('B')"><img src="images/tic_tac_toe/blank.jpg" border=0 height=100 width=100 name=B alt="Top-Center"></a></td>
-<td><a href="javascript:yourChoice('C')"><img src="images/tic_tac_toe/blank.jpg" border=0 height=100 width=100 name=C alt="Top-Right"></a></td>
+<td><a href="javascript:yourChoice('A')"><img src="http://www.fastdecals.com/images/Decals/Nondecal/RoyalBlue.jpg" border=10 height=100 width=100 name=A alt="Top-Left"></a></td>
+<td><a href="javascript:yourChoice('B')"><img src="http://www.fastdecals.com/images/Decals/Nondecal/RoyalBlue.jpg" border=10 height=100 width=100 name=B alt="Top-Center"></a></td>
+<td><a href="javascript:yourChoice('C')"><img src="http://www.fastdecals.com/images/Decals/Nondecal/RoyalBlue.jpg" border=10 height=100 width=100 name=C alt="Top-Right"></a></td>
 </tr>
 <tr>
-<td><a href="javascript:yourChoice('D')"><img src="images/tic_tac_toe/blank.jpg" border=0 height=100 width=100 name=D alt="Middle-Left"></a></td>
-<td><a href="javascript:yourChoice('E')"><img src="images/tic_tac_toe/blank.jpg" border=0 height=100 width=100 name=E alt="Middle-Center"></a></td>
-<td><a href="javascript:yourChoice('F')"><img src="images/tic_tac_toe/blank.jpg" border=0 height=100 width=100 name=F alt="Middle-Right"></a></td>
+<td><a href="javascript:yourChoice('D')"><img src="http://www.fastdecals.com/images/Decals/Nondecal/RoyalBlue.jpg" border=10 height=100 width=100 name=D alt="Middle-Left"></a></td>
+<td><a href="javascript:yourChoice('E')"><img src="http://www.fastdecals.com/images/Decals/Nondecal/RoyalBlue.jpg" border=10 height=100 width=100 name=E alt="Middle-Center"></a></td>
+<td><a href="javascript:yourChoice('F')"><img src="http://www.fastdecals.com/images/Decals/Nondecal/RoyalBlue.jpg" border=10 height=100 width=100 name=F alt="Middle-Right"></a></td>
 </tr>
 <tr>
-<td><a href="javascript:yourChoice('G')"><img src="images/tic_tac_toe/blank.jpg" border=0 height=100 width=100 name=G alt="Bottom-Left"></a></td>
-<td><a href="javascript:yourChoice('H')"><img src="images/tic_tac_toe/blank.jpg" border=0 height=100 width=100 name=H alt="Bottom-Center"></a></td>
-<td><a href="javascript:yourChoice('I')"><img src="images/tic_tac_toe/blank.jpg" border=0 height=100 width=100  name=I alt="Bottom-Right"></a></td>
+<td><a href="javascript:yourChoice('G')"><img src="http://www.fastdecals.com/images/Decals/Nondecal/RoyalBlue.jpg" border=10 height=100 width=100 name=G alt="Bottom-Left"></a></td>
+<td><a href="javascript:yourChoice('H')"><img src="http://www.fastdecals.com/images/Decals/Nondecal/RoyalBlue.jpg" border=10 height=100 width=100 name=H alt="Bottom-Center"></a></td>
+<td><a href="javascript:yourChoice('I')"><img src="http://www.fastdecals.com/images/Decals/Nondecal/RoyalBlue.jpg" border=10 height=100 width=100 name=I alt="Bottom-Right"></a></td>
 </tr>
 </table>
 </td>
 <td>
+
+</td>
+</table>
+<br>
 <table>
 <tr><td><input type=text size=5 name=you></td><td>You</td></tr>
 <tr><td><input type=text size=5 name=computer></td><td>Computer</td></tr>
 <tr><td><input type=text size=5 name=ties></td><td>Ties</td></tr>
 </table>
-</td>
-</table>
+<br><br>
 <input type=button value="Play Again" onClick="playAgain();">
-
 <input type=button value="Game Help" onClick="help();">
 </form>
 </center>
@@ -331,30 +325,11 @@ t--;
 </table>
 </div>
 
-
-
-
+<br />
 <br /><br />&nbsp;<br />
-<div align="center"><span class="style1" style="color:#666666">&copy; 2002-2016 CalculatorCat.com/BlueMarmot, Inc.</span></div>
-
-<p />&nbsp;
+<div align="center"><span class="style1" style="color:#666666">&copy; Blue Is The Color</span></div>
 
 
-<script type='text/javascript'>
-var ssa = 'fb7dd313dcc5c2d1';
-var ssaUrl = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'pixel.sitescout.com/iap/' + ssa;
-new Image().src=ssaUrl;
-</script>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-67055721-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
 </body>
 </html>
