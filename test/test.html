@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Tiki Taka Toe</title>
+	</head>
+
+<body>
+<div align="center">
+
+<table cellpadding="0" cellspacing="0" border="0" width="600">
+	<tr>
+		<td><div class="hdrL"></div></td>
+	</tr>
+	<tr>
+		<td valign="top" align="center" class="tBorder" style="padding:30px;padding-top:20px">
+
+				<h1 class="hh1"><b>Tiki-Taka-Toe</b></h1>
+		<br /><br />
+						<div align="center">Here is an interactive game of good old fashioned tic-tac-toe! The game includes automatic scoring and alternating "first moves". Enjoy!</div>
+		<br /><br />
+
+
+
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+
+var x = "http://www.clker.com/cliparts/N/8/h/O/7/G/black-cross-th.png";
+// Location of where you uploaded your site's x.jpg image
+
+var o = "http://www.samleisure.co.uk/wp-content/uploads/2011/10/6211.032-100x100.jpg";
+// Location of where you uploaded your site's o.jpg image
+
+var blank = "blue.jpg";
+// Location of where you uploaded your site's blank.jpg image
+
+function create2d(rows) {
+  var arr = [];
+
+  for (var i=0;i<rows;i++) {
+     arr[i] = [];
+	 for(var j =0;j<rows;j++)
+	    arr[i][j] = 'b';
+  }
+
+  return arr;
+}
+
+
+function Board()
+{
+   this.a = create2d(3);
+   
+   this.pos = function pos(i,j)
+   {
+       if((this.a[i][j])== 'b')
+	      return 'f';
+	   return 'n';   
+   }
+   
+   this.checkrow = function checkrow(i)
+   {
+        if(this.a[i][0]==this.a[i][1]&&this.a[i][1]==this.a[i][2]&&this.a[i][0]!='b')
+			return true;
+		return false;
+   }
+   
+   this.checkcol = function checkcol(j)
+   {
+        if(this.a[0][j]==this.a[1][j]&&this.a[1][j]==this.a[2][j]&&this.a[0][j]!='b')
+			return true;
+		return false;
+   }
+   
+   this.checkdiags = function checkdiags()
+	{
+		if((this.a[0][0]==this.a[1][1]&&this.a[1][1]==this.a[2][2]&&this.a[2][2]!='b')||(this.a[0][2]==this.a[1][1]&&this.a[1][1]==this.a[2][0])&&this.a[0][2]!='b')
+			return true;
+		return false;
+	}   
+   
+    this.currentState = function currentState(){
+		   var i,
+		       j;
+			   b=0;                   //'b' => blank = 1; if 1, return n -> not end_state 
+		   for(i=0;i<3;i++)
+		   {
+			   for(j=0;j<3;j++)
+			   {
+				   if(this.a[i][j]=='b')
+				   {
+					   b = 1;
+					   break;
+				   }
+			   }
+			   if(b==1)
+			     break;
+		   }
+		   
+		   if(this.checkrow(0) || this.checkrow(1) || this.checkrow(2) || this.checkcol(0)||this.checkcol(1)||this.checkcol(2)||this.checkdiags())
+          	   return 'v';			   // 'v' = victory
+		   if(b==0)
+               return 'd';		   
+           return 'n';                                                         // not end_state
+	}                                                                    // return current board configuration
+	
+	this.fillpos = function fillpos(x, y, player){
+		     if(player == 'm')
+				 (this.a[x][y]) = 'x';                    // player is 'x';
+			 else
+ 				 (this.a[x][y]) = 'o';                    // comp is 'o';
+	}         // fills position on board
+	
+	this.clearpos = function clearpos(x,y){
+		      this.a[x][y] = 'b';
+	}          // Clear position
+}
+
+
+function Move(i,j){
+	this.i =i;
+	this.j =j;
+}
+
+var best_move;                 //Stores the next best move to make;
+
+
+function Opponent_Of(player)
+{
+	if(player == 'm')
+		return 'c';
+	return 'm';
+}
+
+function score(player ,board)      //Recursive algo wich stores the best move to make in best_move and returns best score
+{
+   if(board.currentState() != 'n' )         // 'n' = not end_state 
+   {
+      if(board.currentState()=='d')         // 'd' = draw state
+      { 
+	     return 0;
+	  }	  
+      else if (player=='m')         //'m' = me. Comp's previous move led to an end which is not a draw. 
+	  {                             // Therefore comp made a winning move
+	     return -10;
+	  }
+	  else if(player == 'c')        //'c' = comp. I made a winning move
+	  {
+		  return 10;
+	  }
+   }
+  
+   var SSL = [] ; // SSL = States_Score_List
+   var ML = []; //ML = Moves_list
+   
+   
+    
+   
+   for(var i=0;i<3;i++)
+   {
+	   for(var j=0;j<3;j++)
+	   {
+		   if(board.pos(i,j)=='f')    // if position is free
+		   {
+			   board.fillpos(i,j,player);
+			   SSL.push(score(Opponent_Of(player),board));
+			   var m = new Move(i,j);
+			   ML.push(m);
+			   board.clearpos(i,j);
+		   }
+	   }
+   }
+   
+   
+   var best_score, 
+       best_score_index;
+   if(player=='m')
+   {
+	   var max=SSL[0];
+	   for(var i = 1;i<SSL.length;i++)
+	   {   
+	      if(SSL[i]>max)
+		      max = SSL[i];
+	   }  
+	   best_score = max;
+   }
+   else
+   {
+	   var min=SSL[0];
+	   for(var i = 1;i<SSL.length;i++)
+	   {   
+	      if(SSL[i]<min)
+		      min = SSL[i];
+	   }  
+	   best_score = min;
+   }
+   best_score_index = SSL.indexOf(best_score);
+   
+   best_move = ML[best_score_index];      //keeps storing the best move in best_move. The bottom-most recursive stack element(the original fn call) will store the 
+                                              // the best move to be performed
+   return best_score;
+
+}
+
+var set=0;
+var board;
+
+function yourChoice(ch)
+{ 
+   //alert("you clicked " + Math.floor((ch/10))%10);
+   if(set==0)
+   { 
+       board = new Board();
+	   set =1;
+   } 
+   if(board.pos((Math.floor(ch/10)%10),ch%10)=='f')
+   {
+        board.fillpos((Math.floor(ch/10)%10),ch%10,'m');
+		document[ch].src= x;
+		score('c',board);
+		new_ch = (best_move.i)*10 + best_move.j;
+		board.fillpos((Math.floor(new_ch/10)%10),new_ch%10,'c');
+		document[new_ch].src= o;
+		if(board.currentState()!='n')
+		{
+		    if(board.currentState()=='d')
+			   alert("draw");
+			else if(board.currentState()=='v')
+               alert("You Lost");			
+		}
+   }
+   else
+   {
+        alert("occupied");
+   }
+}
+</script>
+
+
+
+
+<center>
+
+<table border=0>
+<td>
+<table border=20>
+<tr>
+<td><a href="javascript:yourChoice(0)"><img src="blue.jpg" border=10 height=100 width=100 name=0 id =0 alt="Top-Left"></a></td>
+<td><a href="javascript:yourChoice(1)"><img src="blue.jpg" border=10 height=100 width=100 name=1 alt="Top-Center"></a></td>
+<td><a href="javascript:yourChoice(2)"><img src="blue.jpg" border=10 height=100 width=100 name=2 alt="Top-Right"></a></td>
+</tr>
+<tr>
+<td><a href="javascript:yourChoice(10)"><img src="blue.jpg" border=10 height=100 width=100 name=10 alt="Middle-Left"></a></td>
+<td><a href="javascript:yourChoice(11)"><img src="blue.jpg" border=10 height=100 width=100 name=11 alt="Middle-Center"></a></td>
+<td><a href="javascript:yourChoice(12)"><img src="blue.jpg" border=10 height=100 width=100 name=12 alt="Middle-Right"></a></td>
+</tr>
+<tr>
+<td><a href="javascript:yourChoice(20)"><img src="blue.jpg" border=10 height=100 width=100 name=20 alt="Bottom-Left"></a></td>
+<td><a href="javascript:yourChoice(21)"><img src="blue.jpg" border=10 height=100 width=100 name=21 alt="Bottom-Center"></a></td>
+<td><a href="javascript:yourChoice(22)"><img src="blue.jpg" border=10 height=100 width=100 name=22 alt="Bottom-Right"></a></td>
+</tr>
+</table>
+</td>
+<td>
+
+</td>
+</table>
+<br>
+</center>
+</td>
+	</tr>
+</table>
+</div>
+
+<br />
+<br /><br />&nbsp;<br />
+<div align="center"><span class="style1" style="color:#666666">&copy; Blue Is The Color</span></div>
+
+
+
+</body>
+</html>
